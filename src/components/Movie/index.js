@@ -1,9 +1,6 @@
 import React from 'react';
 import Quiz from '../Quiz';
-import movie from '../../assets/movie.mp4'
-import bg from '../../assets/bg.png'
 import {Container, VideoContainer, Video} from './style'
-import ReactPlayer from 'react-player'
 
 export default class Movie extends React.Component {
   constructor() {
@@ -12,38 +9,48 @@ export default class Movie extends React.Component {
       video: null
     }
     this.setCurrentTime = this.setCurrentTime.bind(this)
+    this.getCurrentTime = this.getCurrentTime.bind(this)
+    this.setVideo = this.setVideo.bind(this)
   }
 
   componentDidMount() {
-    this.video.addEventListener('canplay', () => {
-      this.setState({
-        video: this.video
-      })
-      this.video.play()
+    //window.video = this.video
+    this.setState({
+      video: this.video,
+      currentTime: 0
     })
   }
 
-  setCurrentTime(time){
-    this.video.currentTime = time
+  setCurrentTime(time) {
+    this.video.seekTo(time)
+  }
+
+  setVideo(video) {
+    this.video = video
+  }
+
+  getCurrentTime() {
+    this.setState({currentTime: this.video.getCurrentTime()})
   }
 
   render() {
     return (
       <Container>
         <VideoContainer>
-          <Video preload="auto"
-                 innerRef={(video) => {
-                   this.video = video
-                 }}
-                 src={movie}
-                 poster={bg}
-                 type="video/mp4">
-          </Video>
+          <Video
+            width={640*3}
+            height={360*3}
+            url='https://youtu.be/Adp4xExi2MM'
+            innerRef={this.setVideo}
+            playing
+            onProgress={this.getCurrentTime}
+            progressFrequency={500}
+          />
         </VideoContainer>
         {
           this.state.video &&
           <Quiz
-            video={this.state.video}
+            currentTime={this.state.currentTime}
             setCurrentTime={this.setCurrentTime}
           />
         }

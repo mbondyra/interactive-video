@@ -3,7 +3,7 @@ import axios from 'axios'
 import Answer from './Answer'
 import {Quiz, Question, Answers} from './style'
 
-const ENDPOINT = 'http://4a373d14.ngrok.io/Kv9NSb'
+const ENDPOINT = 'https://enigmatic-journey-52480.herokuapp.com/Kv9NSb/'
 
 export default class QuizMain extends React.Component {
   constructor() {
@@ -32,13 +32,13 @@ export default class QuizMain extends React.Component {
           data: res.data,
           question: res.data[0]
         }, () => {
-          this.props.video.addEventListener("timeupdate", this.onTimeUpdate)
+         // this.props.video.addEventListener("timeupdate", this.onTimeUpdate)
         })
       })
   }
 
   onTimeUpdate() {
-    const currentTime = this.props.video.currentTime
+    const currentTime = this.props.currentTime
     if (this.userResponded()) {
       this.jumpToNextFragment()
     } else if (currentTime > this.state.question.time.end) {
@@ -85,6 +85,12 @@ export default class QuizMain extends React.Component {
       question: this.state.data[answer.next],
       quizVisible: false
     })
+  }
+
+  componentWillUpdate(){
+    if (this.state.question && this.state.data){
+      this.onTimeUpdate()
+    }
   }
 
   render() {

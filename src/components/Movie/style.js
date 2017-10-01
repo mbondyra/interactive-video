@@ -1,20 +1,5 @@
 import styled from 'styled-components'
-
-export const Subtitles = styled.div`
-  position: absolute;
-  width: 100%;
-  padding: 0 14%;
-  bottom: 20px;
-  text-align: center;
-  color: white;
-  font-weight: 500;
-  z-index: 1000000000;
-  font-family: "Roboto", sans-serif;
-  font-size: 24px;
-  line-height: 30px;
-  background: none;
-  text-shadow: 0 0 10px black;
-`
+import ReactPlayer from 'react-player'
 
 export const Container = styled.div`
   position: relative;
@@ -32,20 +17,20 @@ export const VideoContainer = styled.div`
   overflow: hidden;
   z-index: -100;
 `
-export const Video = styled.video`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+export const Video = styled(ReactPlayer)`
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   
-  @media (min-aspect-ratio: 16/9) {
-    height: 300%;
-    top: -100%;
+ /* @media (min-aspect-ratio: 16/9) {
+    height: 300% !important;
+    top: -100% !important;
   }
   
   @media (max-aspect-ratio: 16/9) {
-    width: 300%;
-    left: -100%;
-  }
+    width: 300% !important;
+    left: -100% !important;
+  }*/
 `
