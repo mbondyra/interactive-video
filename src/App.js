@@ -21,7 +21,7 @@ export default class App extends Component {
     return (
       <div>
         <Poster>
-          <Button onClick={this.startMovie}>{'Play'} </Button>
+          <Button onClick={this.startMovie}><a>Play</a></Button>
         </Poster>
         {
           this.state.started &&
