@@ -1,33 +1,50 @@
 import React, {Component} from 'react'
 import Movie from './components/Movie'
-import {Poster, Button} from './style'
+import Popup from './components/Popup'
+import ShortDescription from './components/ShortDescription'
+import {Poster, Button, Brand, Wrapper} from './style'
 
 export default class App extends Component {
   constructor() {
     super()
     this.state = {
-      started: false
+      started: false,
+      popupVisible: false
     }
-    this.startMovie = this.startMovie.bind(this)
   }
 
-  startMovie() {
+  startMovie = () => {
     this.setState({
       started: true
     })
   }
 
+  showPopup = () => {
+    this.setState({
+      popupVisible: true
+    })
+  }
+
+  closePopup = () => {
+    this.setState({
+      popupVisible: false
+    })
+  }
+
   render() {
     return (
-      <div>
+      <Wrapper>
         <Poster>
-          <Button onClick={this.startMovie}><a>Play</a></Button>
+          <Button onClick={this.startMovie}></Button>
         </Poster>
         {
           this.state.started &&
           <Movie/>
         }
-      </div>
+        <ShortDescription open={this.showPopup}/>
+        <Popup visible={this.state.popupVisible} close={this.closePopup}/>
+        <Brand>An experiment by <a href="https://typeform.com">Typeform|</a></Brand>
+      </Wrapper>
     )
   }
 }

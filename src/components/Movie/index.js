@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, VideoContainer, Video} from './style'
+import {Container, VideoContainer, VideoBindLayer, Video, MuteButton, PauseButton, FullscreenButton} from './style'
 import axios from 'axios'
 import Answer from './Answer'
 import {Quiz, Question, Answers} from './style'
@@ -10,16 +10,16 @@ export default class Movie extends React.Component {
   constructor() {
     super()
     this.state = {
-      video: null,
       data: null,
       question: null,
       answer: null,
-      quizVisible: false
+      volume: 1,
+      paused: false,
+      quizVisible: false,
+      videoVisible: false,
+      controlsVisible: false,
+      fullscreen: false
     }
-
-    this.setVideo = this.setVideo.bind(this)
-    this.handleAnswer = this.handleAnswer.bind(this)
-    this.onTimeUpdate = this.onTimeUpdate.bind(this)
   }
 
   componentWillMount() {
@@ -33,12 +33,23 @@ export default class Movie extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      video: this.video
-    }, () => {
-      setInterval(() => {
-        this.onTimeUpdate()
-      }, 500)
+    this.setState({video: this.video})
+    document.addEventListener('mousemove', ()=>{
+      let inactivityTimeout = null;
+      if (!this.video.paused) {
+        this.setState({
+          controlsVisible: true
+        // }, ()=>{
+        //   if (inactivityTimeout != null) {
+        //     clearTimeout(inactivityTimeout);
+        //   }
+        //   inactivityTimeout = setTimeout(()=>{
+        //     this.setState({
+        //       controlsVisible: false
+        //     })
+        //   }, 1000);
+        })
+      }
     })
   }
 
@@ -48,8 +59,40 @@ export default class Movie extends React.Component {
     })
   }
 
-  onTimeUpdate() {
-    this.video.internalPlayer.getCurrentTime().then((currentTime) => {
+  toggleMute = () => {
+    this.setState({
+      volume: +(!this.state.volume)
+    })
+  }
+
+  togglePlay = () => {
+    if (this.state.paused){
+      this.video.player.play()
+    } else {
+      this.video.player.pause()
+    }
+    this.setState({
+      paused: !this.state.paused
+    })
+  }
+
+  toggleMute = () => {
+    this.setState({
+      volume: +(!this.state.volume)
+    })
+  }
+
+  toggleFullscreen = () => {
+    this.setState({
+      fullscreen: !this.state.fullscreen
+    })
+  }
+
+  onTimeUpdate = () => {
+    if (!this.video || !this.state.question) return
+
+    const currentTime = this.video.getCurrentTime()
+    if (currentTime) {
       const start = this.state.question.time.start
       const end = this.state.question.time.end
       if (currentTime > end) {
@@ -57,14 +100,14 @@ export default class Movie extends React.Component {
       } else if (currentTime > this.state.question.time.start && currentTime < this.state.question.time.end && !this.state.quizVisible) {
         this.showQuiz()
       }
-    })
+    }
   }
 
   repeatLoop(start) {
-    this.video.internalPlayer.seekTo(start)
+    this.video.seekTo(start)
   }
 
-  handleAnswer(answer) {
+  handleAnswer = (answer) => {
     this.setState({
       answer: answer
     });
@@ -74,7 +117,7 @@ export default class Movie extends React.Component {
   }
 
   setNextQuestion(answer) {
-    this.video.internalPlayer.seekTo(this.state.answer.jumpTo)
+    this.video.seekTo(this.state.answer.jumpTo)
     this.setState({
       question: this.state.data[answer.next],
       answer: null,
@@ -82,33 +125,52 @@ export default class Movie extends React.Component {
     })
   }
 
-  setVideo(video) {
+  setVideo = (video) => {
     this.video = video
+    window.video = video
+  }
+
+  showVideo = () => {
+    this.setState({
+      videoVisible: true
+    })
   }
 
   render() {
     const question = this.state.question
     return (
       <Container>
-        <VideoContainer>
+        <VideoContainer visible={this.state.videoVisible} fullscreen={this.state.fullscreen}>
           <Video
-            videoId='Adp4xExi2MM'
+            onReady={this.showVideo}
+            onProgress={this.onTimeUpdate}
             innerRef={this.setVideo}
-            opts={{
-              height: '390',
-              width: '640',
-              playerVars: { // https://developers.google.com/youtube/player_parameters
-                autoplay: 1,
-                controls: 0,
-                showinfo: 0,
-                allowFullScreen: 0,
-                rel: 0
+            ref="video"
+            url='https://vimeo.com/242772120'
+            width={1920}
+            height={1170}
+            progressFrequency={200}
+            volume={this.state.volume}
+            config={{
+              vimeo: {
+                playerOptions: {
+                  autoplay: true,
+                  controls: 0,
+                  showinfo: 0,
+                  allowFullScreen: 0,
+                  rel: 0,
+                  modestbranding: 1
+                }
               }
             }}
           />
         </VideoContainer>
+        <VideoBindLayer visible={this.state.videoVisible} fullscreen={this.state.fullscreen}/>
+        <MuteButton visible={this.state.controlsVisible} active={this.state.volume} onClick={this.toggleMute}/>
+        <PauseButton visible={this.state.controlsVisible}  active={this.state.paused} onClick={this.togglePlay}/>
+        <FullscreenButton  visible={this.state.controlsVisible} active={this.state.fullscreen} onClick={this.toggleFullscreen}/>
         {
-          this.state.video &&
+          this.video &&
           <Quiz visible={this.state.quizVisible}>
             <Question>
               {question && question.title}

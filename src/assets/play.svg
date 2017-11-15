@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Big Play</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="LANDING-PAGE-DESKTOP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="Home--Copy-3" transform="translate(-482.000000, -248.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="Big-Play" transform="translate(482.000000, 248.000000)">
+                <path d="M30,0 C13.4666667,0 0,13.4 0,30 C0,46.5333333 13.4666667,60 30,60 C46.5333333,60 60,46.5333333 60,30 C60,13.4 46.5333333,0 30,0 Z M42.8,31.1333333 L24,42.7333333 C23.1333333,43.2666667 22,42.6666667 22,41.6 L22,18.4 C22,17.3333333 23.1333333,16.7333333 24,17.2666667 L42.8,28.8666667 C43.6,29.4 43.6,30.6 42.8,31.1333333 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
