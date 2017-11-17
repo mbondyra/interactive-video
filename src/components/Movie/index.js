@@ -6,6 +6,7 @@ import {Quiz, Question, Answers} from './style'
 
 const ENDPOINT = 'https://enigmatic-journey-52480.herokuapp.com/Kv9NSb/'
 
+
 export default class Movie extends React.Component {
   constructor() {
     super()
@@ -76,9 +77,9 @@ export default class Movie extends React.Component {
     })
   }
 
-  toggleMute = () => {
+  toggleMute = (ev) => {
     this.setState({
-      volume: +(!this.state.volume)
+      volume: ev.target.value
     })
   }
 
@@ -146,7 +147,7 @@ export default class Movie extends React.Component {
             onProgress={this.onTimeUpdate}
             innerRef={this.setVideo}
             ref="video"
-            url='https://vimeo.com/242772120'
+            url='https://player.vimeo.com/video/243269540'
             width={1920}
             height={1170}
             progressFrequency={200}
@@ -166,7 +167,13 @@ export default class Movie extends React.Component {
           />
         </VideoContainer>
         <VideoBindLayer visible={this.state.videoVisible} fullscreen={this.state.fullscreen}/>
-        <MuteButton visible={this.state.controlsVisible} active={this.state.volume} onClick={this.toggleMute}/>
+        <MuteButton type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    defaultValue={this.state.volume}
+                    visible={this.state.controlsVisible} active={this.state.volume} onChange={this.toggleMute}
+        />
         <PauseButton visible={this.state.controlsVisible}  active={this.state.paused} onClick={this.togglePlay}/>
         <FullscreenButton  visible={this.state.controlsVisible} active={this.state.fullscreen} onClick={this.toggleFullscreen}/>
         {

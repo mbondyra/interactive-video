@@ -118,7 +118,7 @@ export const Video = styled(ReactPlayer)`
   }*/
 `
 
-export const MuteButton = styled.div`
+export const MuteButton = styled.input`
   opacity: ${props => (props.visible ? '1' : '0' )};
   transition: opacity 0.2 ease-in;
   position: fixed;
