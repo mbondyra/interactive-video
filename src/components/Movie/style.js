@@ -1,5 +1,9 @@
 import styled, {keyframes} from 'styled-components'
 import ReactPlayer from 'react-player'
+import play from '../../assets/controls/play.svg'
+import pause from '../../assets/controls/pause.svg'
+import fullscreen from '../../assets/controls/fullscreen.svg'
+import noFullScreen from '../../assets/controls/no-fullscreen.svg'
 
 export const Quiz = styled.div`
 	position: absolute;
@@ -82,23 +86,12 @@ export const VideoContainer = styled.div`
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
+  transition: all 0.15s ease-in;
   left: 50%;
-  width: ${props => (props.fullscreen ? '100vw' : '70vw')};
-  height: ${props => (props.fullscreen ? '100vh' : '37vw')};
-  opacity: ${props => (props.visible ? 1 : 0)};
-  transition: all 0.2s ease-in;
+  width: ${props => (props.fullscreen ? '100vw' : '58.59vw')};
+  height: ${props => (props.fullscreen ? '100vh' : '33.04vw')};
 `
-export const VideoBindLayer = styled.div`
-  position: fixed;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  z-index:7;
-  width: ${props => (props.fullscreen ? '100vw' : '70vw')};
-  height: ${props => (props.fullscreen ? '100vh' : '37vw')};
-  opacity: ${props => (props.visible ? 1 : 0)};
-  transition: all 0.2s ease-in;
-`
+
 
 export const Video = styled(ReactPlayer)`
   position: absolute !important;
@@ -118,37 +111,28 @@ export const Video = styled(ReactPlayer)`
   }*/
 `
 
-export const MuteButton = styled.input`
-  opacity: ${props => (props.visible ? '1' : '0' )};
-  transition: opacity 0.2 ease-in;
-  position: fixed;
-  bottom: 20px;
-  left: 0;
-  background: ${props => (props.active ? 'red' : 'blue' )};
-  width: 100px;
-  height: 100px;
-  z-index:10;
+export const Controls = styled.div`
+  transition: all 0.2s ease-in;
+  opacity: ${props => (props.visible ? 1 : 0)};
 `
 
 export const PauseButton = styled.div`
-  opacity: ${props => (props.visible ? '1' : '0' )};
-  transition: opacity 0.2 ease-in;
   position: fixed;
-  bottom: 20px;
-  left: 120px;
-  background: ${props => (props.active ? 'green' : 'white' )};
-  width: 100px;
-  height: 100px;
-  z-index:10;
+  bottom: 33px;
+  left: 75px;
+  background: ${props => (props.active ? `url(${play})` : `url(${pause})` )} center no-repeat;
+  background-size: cover;
+  width: 13px;
+  cursor: pointer;
+  height: 13px;
 `
 export const FullscreenButton = styled.div`
-  opacity: ${props => (props.visible ? '1' : '0' )};
-  transition: opacity 0.2 ease-in;
+  bottom: 33px;
+  right: 40px;
+  cursor: pointer;
+  background: ${props => (props.active ? `url(${noFullScreen})` : `url(${fullscreen})` )} center no-repeat;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
   position: fixed;
-  bottom: 20px;
-  left: 230px;
-  background: ${props => (props.active ? 'pink' : 'yellow' )};
-  width: 100px;
-  height: 100px;
-  z-index:10;
 `

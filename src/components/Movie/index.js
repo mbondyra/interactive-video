@@ -1,21 +1,35 @@
 import React from 'react';
-import {Container, VideoContainer, VideoBindLayer, Video, MuteButton, PauseButton, FullscreenButton} from './style'
+import {Container, VideoContainer, Video, PauseButton, FullscreenButton, Controls} from './style'
+import ShortDescription from '../ShortDescription'
 import axios from 'axios'
 import Answer from './Answer'
 import {Quiz, Question, Answers} from './style'
+import VolumePanel from '../VolumePanel'
 
 const ENDPOINT = 'https://enigmatic-journey-52480.herokuapp.com/Kv9NSb/'
-
+const VIMEO_CONFIG = {
+  vimeo: {
+    playerOptions: {
+      autoplay: false,
+      controls: 0,
+      showinfo: 0,
+      allowFullScreen: 0,
+      rel: 0,
+      modestbranding: 1
+    }
+  }
+}
 
 export default class Movie extends React.Component {
   constructor() {
     super()
     this.state = {
+      loaded: null,
       data: null,
       question: null,
       answer: null,
-      volume: 1,
-      paused: false,
+      volume: 0.8,
+      playing: false,
       quizVisible: false,
       videoVisible: false,
       controlsVisible: false,
@@ -37,7 +51,7 @@ export default class Movie extends React.Component {
     this.setState({video: this.video})
     document.addEventListener('mousemove', ()=>{
       let inactivityTimeout = null;
-      if (!this.video.paused) {
+      if (this.video.playing) {
         this.setState({
           controlsVisible: true
         // }, ()=>{
@@ -60,26 +74,17 @@ export default class Movie extends React.Component {
     })
   }
 
-  toggleMute = () => {
-    this.setState({
-      volume: +(!this.state.volume)
-    })
-  }
-
   togglePlay = () => {
-    if (this.state.paused){
-      this.video.player.play()
-    } else {
+    if (this.state.playing){
       this.video.player.pause()
+    } else {
+      this.video.player.play()
     }
-    this.setState({
-      paused: !this.state.paused
-    })
   }
 
-  toggleMute = (ev) => {
+  setVolume = (value) => {
     this.setState({
-      volume: ev.target.value
+      volume: +value
     })
   }
 
@@ -136,6 +141,17 @@ export default class Movie extends React.Component {
       videoVisible: true
     })
   }
+  onPlay = () => {
+    this.setState({
+      playing: true
+    })
+  }
+
+  onPause = () => {
+    this.setState({
+      playing: false
+    })
+  }
 
   render() {
     const question = this.state.question
@@ -152,45 +168,30 @@ export default class Movie extends React.Component {
             height={1170}
             progressFrequency={200}
             volume={this.state.volume}
-            config={{
-              vimeo: {
-                playerOptions: {
-                  autoplay: true,
-                  controls: 0,
-                  showinfo: 0,
-                  allowFullScreen: 0,
-                  rel: 0,
-                  modestbranding: 1
-                }
-              }
-            }}
+            config={VIMEO_CONFIG}
+            onPlay={this.onPlay}
+            onPause={this.onPause}
           />
         </VideoContainer>
-        <VideoBindLayer visible={this.state.videoVisible} fullscreen={this.state.fullscreen}/>
-        <MuteButton type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    defaultValue={this.state.volume}
-                    visible={this.state.controlsVisible} active={this.state.volume} onChange={this.toggleMute}
-        />
-        <PauseButton visible={this.state.controlsVisible}  active={this.state.paused} onClick={this.togglePlay}/>
-        <FullscreenButton  visible={this.state.controlsVisible} active={this.state.fullscreen} onClick={this.toggleFullscreen}/>
-        {
-          this.video &&
-          <Quiz visible={this.state.quizVisible}>
-            <Question>
-              {question && question.title}
-            </Question>
-            <Answers>
-              {
-                question && question.answers && question.answers.map(answer => (
-                  <Answer key={answer.label} answer={answer} handleAnswer={this.handleAnswer}/>
-                ))
-              }
-            </Answers>
-          </Quiz>
-        }
+        <Controls visible={true}>
+          <PauseButton active={!this.state.playing} onClick={this.togglePlay}/>
+          <VolumePanel value={this.state.volume} onChange={this.setVolume}/>
+          <FullscreenButton  active={this.state.fullscreen} onClick={this.toggleFullscreen}/>
+        </Controls>
+        <Quiz visible={this.state.quizVisible}>
+          <Question>
+            {question && question.title}
+          </Question>
+          <Answers>
+            {
+              question && question.answers && question.answers.map(answer => (
+                <Answer key={answer.label} answer={answer} handleAnswer={this.handleAnswer}/>
+              ))
+            }
+          </Answers>
+        </Quiz>
+
+        <ShortDescription visible={!this.state.playing}/>
       </Container>
     )
   }
