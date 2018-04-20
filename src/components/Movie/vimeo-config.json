@@ -1,0 +1,14 @@
+{
+  "vimeo": {
+    "iframeParams": { "fullscreen": 0 },
+    "playerOptions": {
+      "autoplay": false,
+      "controls": 0,
+      "showinfo": 0,
+      "fullscreen": 0,
+      "doNotAllowFullScreen": true,
+      "rel": 0,
+      "modestbranding": 1
+    }
+  }
+}

@@ -3,15 +3,10 @@ body {
   padding: 0;
   font-family: sans-serif;
   background: #262627;
-}
-video::cue {
-  font-size: 0;
-  color: rgba(255,255,255,0);
-  color: transparent;
-  display: none;
 
+  -webkit-font-smoothing: antialiased;
 }
 
-a{
+a {
   color: white;
 }

@@ -1,49 +1,50 @@
 import styled from 'styled-components'
-import volumeFull from '../../assets/controls/volume-full.svg'
-import volumeHalf from '../../assets/controls/volume-half.svg'
-import volumeNone from '../../assets/controls/volume-none.svg'
 import 'react-input-range/lib/css/index.css'
 
 export const Volume = styled.div`
-  position: fixed;
-  bottom: 25px;
+  position: absolute;
+  margin-top: -7px;
   left: 115px;
+  
+  margin-top: 0;
+    left: 50px;
+    top: 2px;
+    
+    
+  opacity: 0.7;
+  :hover {
+    opacity: 1;
+  }
 `
 
 export const VolumeRange = styled.div`
   display: inline-block;
   width: 50px;
-  .input-range__track {
-    background-color: #484849;
-    border-radius: 0;
-    height: 2px;
+  .input-range {
+    height: 1.6rem;
   }
-  .input-range__track--active{
-    background-color: white;
+  .input-range__track {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, #484849 40%, #484849 60%, rgba(0,0,0,0) 60%);
+    border-radius: 0;
+    height: 12px;
+  }
+  .input-range__track--active {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, white 40%, white 60%, rgba(0,0,0,0) 60%);
   }
   .input-range__slider {
     background-color: white;
     border: none;    
     height: 0.6em;
     font-size: 13px;
-    margin-left: -0.4em;
-    margin-top: -0.35em;
+    margin-left: -0.25em;
+    margin-top: -0.72em;
     width: 0.6em;
+  }
+  .input-range__slider:active {
+    transform: scale(1.1);
   }
   .input-range__label {
     display: none;
   }
 `
 
-export const VolumeSymbol = styled.div`
-  display: inline-block;
-  background: center no-repeat ${props => {
-    if (props.value === 0) return `url(${volumeNone})`
-    else if (props.value < 0.5)return `url(${volumeHalf})`
-    return `url(${volumeFull})`
-  }};
-  background-size: cover;
-  width: 16px;
-  height:16px;
-  margin: 1px 6px 0 0;
-`

@@ -1,0 +1,12 @@
+{
+  "vimeo": {
+    "playerOptions": {
+      "autoplay": false,
+      "controls": 0,
+      "showinfo": 0,
+      "allowFullScreen": 0,
+      "rel": 0,
+      "modestbranding": 1
+    }
+  }
+}

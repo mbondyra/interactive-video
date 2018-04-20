@@ -1,71 +1,78 @@
-import React from 'react';
-import {Container, VideoContainer, Video, PauseButton, FullscreenButton, Controls} from './style'
-import ShortDescription from '../ShortDescription'
-import axios from 'axios'
-import Answer from './Answer'
-import {Quiz, Question, Answers} from './style'
+import React from 'react'
+import Quiz from '../Quiz'
 import VolumePanel from '../VolumePanel'
+import ShortDescription from '../ShortDescription'
+import Socials from '../Socials'
+import PauseButton from '../PauseButton'
+import {
+  Title,
+  Subtitle,
+  Brand,
+  Container,
+  VideoContainer,
+  Video,
+  FullscreenButton,
+  Controls,
+  VideoBlindLayer,
+  InfoButton,
+  Div
+} from './style'
+import axios from 'axios'
+import VIMEO_CONFIG from './vimeo-config.json'
+const ENDPOINT = 'https://typeform-interactive-movie.herokuapp.com/Kv9NSb.json'
 
-const ENDPOINT = 'https://enigmatic-journey-52480.herokuapp.com/Kv9NSb/'
-const VIMEO_CONFIG = {
-  vimeo: {
-    playerOptions: {
-      autoplay: false,
-      controls: 0,
-      showinfo: 0,
-      allowFullScreen: 0,
-      rel: 0,
-      modestbranding: 1
-    }
-  }
-}
 
 export default class Movie extends React.Component {
   constructor() {
     super()
     this.state = {
-      loaded: null,
       data: null,
       question: null,
       answer: null,
+      fullScreen: false,
+      prevVolume: 0.8,
       volume: 0.8,
+      started: false,
       playing: false,
+      infoVisible: true,
       quizVisible: false,
       videoVisible: false,
-      controlsVisible: false,
-      fullscreen: false
+      disappearingSections: true,
     }
   }
 
   componentWillMount() {
-    axios.get(ENDPOINT)
-      .then(res => {
-        this.setState({
-          data: res.data,
-          question: res.data[0]
-        })
+    axios.get(ENDPOINT).then(res => {
+      this.setState({
+        data: res.data,
+        question: res.data[0]
       })
+    })
   }
 
   componentDidMount() {
     this.setState({video: this.video})
-    document.addEventListener('mousemove', ()=>{
-      let inactivityTimeout = null;
-      if (this.video.playing) {
-        this.setState({
-          controlsVisible: true
-        // }, ()=>{
-        //   if (inactivityTimeout != null) {
-        //     clearTimeout(inactivityTimeout);
-        //   }
-        //   inactivityTimeout = setTimeout(()=>{
-        //     this.setState({
-        //       controlsVisible: false
-        //     })
-        //   }, 1000);
-        })
+    this.disappearAfterTimeout()
+  }
+
+  disappearAfterTimeout() {
+    let interval = 1
+    setInterval(() => {
+      if (interval === 3) {
+        hide()
       }
-    })
+      interval++
+    }, 1000)
+    const hide = () => {
+      this.setState({disappearingSections: false})
+      interval = 1
+    }
+    const show = () => {
+      this.setState({disappearingSections: true})
+      interval = 1
+    }
+    document.addEventListener('mousemove', show)
+    document.addEventListener('click', show)
   }
 
   showQuiz() {
@@ -75,7 +82,7 @@ export default class Movie extends React.Component {
   }
 
   togglePlay = () => {
-    if (this.state.playing){
+    if (this.state.playing) {
       this.video.player.pause()
     } else {
       this.video.player.play()
@@ -83,15 +90,33 @@ export default class Movie extends React.Component {
   }
 
   setVolume = (value) => {
+    const prevVolume = this.state.volume !== this.state.prevVolume ? this.state.volume : this.state.prevVolume
     this.setState({
-      volume: +value
+      volume: +value,
+      prevVolume: prevVolume
     })
+  }
+
+  toggleMute = () => {
+    console.log("hola")
+    if (this.state.volume === 0) {
+      this.setVolume(this.state.prevVolume)
+    } else {
+      this.setVolume(0)
+    }
   }
 
   toggleFullscreen = () => {
     this.setState({
-      fullscreen: !this.state.fullscreen
+      fullScreen: !this.state.fullScreen
     })
+  }
+
+  toggleInfo = () => {
+    this.setState({
+      infoVisible: !this.state.infoVisible
+    })
+    this.togglePlay()
   }
 
   onTimeUpdate = () => {
@@ -102,21 +127,17 @@ export default class Movie extends React.Component {
       const start = this.state.question.time.start
       const end = this.state.question.time.end
       if (currentTime > end) {
-        this.repeatLoop(start)
+        this.video.seekTo(start)
       } else if (currentTime > this.state.question.time.start && currentTime < this.state.question.time.end && !this.state.quizVisible) {
         this.showQuiz()
       }
     }
   }
 
-  repeatLoop(start) {
-    this.video.seekTo(start)
-  }
-
   handleAnswer = (answer) => {
     this.setState({
       answer: answer
-    });
+    })
     setTimeout(() => {
       this.setNextQuestion(answer)
     }, 500)
@@ -141,9 +162,11 @@ export default class Movie extends React.Component {
       videoVisible: true
     })
   }
+
   onPlay = () => {
     this.setState({
-      playing: true
+      playing: true,
+      infoVisible: false
     })
   }
 
@@ -153,46 +176,55 @@ export default class Movie extends React.Component {
     })
   }
 
+  onStart = () => {
+    this.setState({
+      started: true,
+      infoVisible: false
+    })
+  }
+
   render() {
-    const question = this.state.question
     return (
       <Container>
-        <VideoContainer visible={this.state.videoVisible} fullscreen={this.state.fullscreen}>
-          <Video
-            onReady={this.showVideo}
-            onProgress={this.onTimeUpdate}
-            innerRef={this.setVideo}
-            ref="video"
-            url='https://player.vimeo.com/video/243269540'
-            width={1920}
-            height={1170}
-            progressFrequency={200}
-            volume={this.state.volume}
-            config={VIMEO_CONFIG}
-            onPlay={this.onPlay}
-            onPause={this.onPause}
-          />
-        </VideoContainer>
-        <Controls visible={true}>
-          <PauseButton active={!this.state.playing} onClick={this.togglePlay}/>
-          <VolumePanel value={this.state.volume} onChange={this.setVolume}/>
-          <FullscreenButton  active={this.state.fullscreen} onClick={this.toggleFullscreen}/>
-        </Controls>
-        <Quiz visible={this.state.quizVisible}>
-          <Question>
-            {question && question.title}
-          </Question>
-          <Answers>
-            {
-              question && question.answers && question.answers.map(answer => (
-                <Answer key={answer.label} answer={answer} handleAnswer={this.handleAnswer}/>
-              ))
-            }
-          </Answers>
-        </Quiz>
 
-        <ShortDescription visible={!this.state.playing}/>
+        <Title visible={this.state.disappearingSections}>
+          LOCKED IN
+          <Subtitle visible={!this.state.fullScreen}>
+            An interactive short film
+          </Subtitle>
+        </Title>
+        <Div centered = {this.state.fullScreen}>
+          <VideoContainer visible={this.state.videoVisible} fullScreen={this.state.fullScreen}>
+            <Video
+              onReady={this.showVideo}
+              onProgress={this.onTimeUpdate}
+              onPlay={this.onPlay}
+              onPause={this.onPause}
+              onStart={this.onStart}
+              innerRef={this.setVideo}
+              volume={this.state.volume}
+              url='https://player.vimeo.com/video/243269540?api=1&background=1'
+              width={1920}
+              height={1170}
+              doNotAllowFullScreen={true}
+              frameBorder={1}
+              progressFrequency={200}
+              vimeoConfig={{iframeParams: {fullscreen: 0}}}
+            />
+            <VideoBlindLayer onClick={this.togglePlay}/>
+            <Quiz visible={this.state.quizVisible} question={this.state.question} handleAnswer={this.handleAnswer}/>
+          </VideoContainer>
+          <Controls visible={this.state.disappearingSections && this.state.started}>
+            <PauseButton active={!this.state.playing} onClick={this.togglePlay}/>
+            <VolumePanel value={this.state.volume} onChange={this.setVolume} onClick={this.toggleMute}/>
+            <FullscreenButton active={this.state.fullScreen} onClick={this.toggleFullscreen}/>
+            <InfoButton onClick={this.toggleInfo}/>
+          </Controls>
+        </Div>
+        <ShortDescription visible={this.state.infoVisible} mobileVisible={!this.state.fullScreen}/>
+        <Socials visible={this.state.disappearingSections || !this.state.started}/>
+        <Brand>An experiment by <a target="blank" href="https://typeform.com">Typeform|</a></Brand>
       </Container>
     )
   }
-};
+}
