@@ -4,13 +4,13 @@ import fullScreen from '../../assets/controls/fullscreen.svg'
 import noFullScreen from '../../assets/controls/no-fullscreen.svg'
 import infoButton from '../../assets/controls/i.svg'
 import {media} from '../../media'
+
 export const Container = styled.div`
   position: relative;
   z-index: 6;
   width: 100vw;
   height: 100vh;
 `
-
 export const VideoContainer = styled.div`
   width: 100vw;
   height: 57vw;

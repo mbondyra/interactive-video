@@ -23,12 +23,8 @@ export const VolumeSymbol = styled(SVG)`
   export const Div = styled.div`
   margin-right: 5px;
   width: 19px;
-  
   display: inline-block;
-  
 `
-
-
 
 export default ({value, onChange, onClick}) => (
   <Volume >

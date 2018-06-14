@@ -5,7 +5,6 @@ export const Volume = styled.div`
   position: absolute;
   margin-top: -7px;
   left: 115px;
-  
   margin-top: 0;
     left: 50px;
     top: 2px;
@@ -47,4 +46,3 @@ export const VolumeRange = styled.div`
     display: none;
   }
 `
-

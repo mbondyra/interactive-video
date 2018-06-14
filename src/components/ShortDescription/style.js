@@ -2,23 +2,18 @@ import styled from 'styled-components'
 import {media} from '../../media'
 
 export const Description = styled.div`
-
 	transition: 0.2s all ease-in;
   font-weight: 100;
   font-size: 13px;
   color: white;
   z-index: 3;
-  
-    overflow: scroll;
-    max-height: calc( 100vh - 200px - 57vw );
-    
-  
-    margin: 0 5%;
-    padding: 15px 0;
-    box-sizing: border-box;
-    color: white;
-    
-	  opacity: ${props => (props.mobileVisible ? '1' : '0')};
+  overflow: scroll;
+  max-height: calc( 100vh - 200px - 57vw );
+  margin: 0 5%;
+  padding: 15px 0;
+  box-sizing: border-box;
+  color: white;
+  opacity: ${props => (props.mobileVisible ? '1' : '0')};
   
   ${media.landscape`
   max-height:80vh;
@@ -63,14 +58,13 @@ export const Description = styled.div`
 `
 
 export const Truncate = styled.div`
-  
 	transition: max-height 0.3s ease-in;
-	overflow:hidden;
-	
-    ${media.landscape`
-      
+  overflow:hidden;
+  
+  ${media.landscape`
 	    max-height: ${props => (props.expanded ? '400px' : '54px')};
-    `}
+  `}
+
    a { 
     font-weight: 500;
     font-size: 13px;
@@ -80,8 +74,6 @@ export const Truncate = styled.div`
     margin-top: 28px;
     transition: .15s ease-in;
     transition-property: color, background-color;
-    
-    
     display: block;
     text-align: center;
     :hover {
