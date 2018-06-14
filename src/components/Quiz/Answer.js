@@ -1,7 +1,7 @@
 import React from 'react'
-import {Answer} from './style'
+import {AnswerWrapper} from './style'
 
-export default class QuizMain extends React.Component {
+export default class Answer extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -34,7 +34,7 @@ export default class QuizMain extends React.Component {
 
   render() {
     return (
-      <Answer onClick={this.handleAnswer} selected={this.state.selected}>{this.props.answer.label}</Answer>
+      <AnswerWrapper onClick={this.handleAnswer} selected={this.state.selected}>{this.props.answer.label}</AnswerWrapper>
     )
   }
 }

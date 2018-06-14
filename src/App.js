@@ -1,33 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Movie from './components/Movie'
-import {Poster, Button} from './style'
+import {Wrapper} from './style'
 
-export default class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      started: false
-    }
-    this.startMovie = this.startMovie.bind(this)
-  }
+const App = () => (
+  <Wrapper>
+    <Movie/>
+  </Wrapper>
+)
 
-  startMovie() {
-    this.setState({
-      started: true
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <Poster>
-          <Button onClick={this.startMovie}><a>Play</a></Button>
-        </Poster>
-        {
-          this.state.started &&
-          <Movie/>
-        }
-      </div>
-    )
-  }
-}
+export default App

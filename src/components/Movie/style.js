@@ -1,94 +1,50 @@
-import Youtube from 'react-youtube'
-import styled, {keyframes} from 'styled-components'
-
-export const Quiz = styled.div`
-	position: absolute;
-	width: 80%;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	display: ${props => (props.visible ? 'block' : 'none')};
-`;
-
-export const Question = styled.div`        
-  color: #FFFFFF;
-  font-family: "Source Sans Pro",sans-serif;
-  position: relative;
-  padding: 0;
-  cursor: default;
-  margin-left: -23px;
-  line-height: 140%;
-  text-align: left;
-  font-weight: 300;
-  padding: 12px 0;
-  font-size: 22px;
-  &:before {
-    content: '→';
-    width: 30px;
-    display: inline-block;
-  }
-`
-
-export const Answers = styled.div`
-  display: inline-block;
-`
-
-const blink = keyframes`
-	from {
-		box-shadow: 0px 0px 0px 1px rgba(255,221,31,0.6);
-		border-color: currentColor;
-      background: transparent;
-	}
-
-	to {
-		border-color: transparent;
-		box-shadow: none;
-      background: rgba(255,221,31,0.1);
-	}
-`
-
-export const Answer = styled.div`  
-  position: relative;
-  color: rgb(255,221,31);
-  border: solid rgba(255,221,31,0.6) 1px;
-  box-shadow: ${props => (props.selected ? '0px 0px 0px 1px rgba(255,221,31,0.6)' : 'none')};
-  padding: 8px 35px 8px 8px;
-  border-radius: 3px;
-  margin: 5px;
-  font-size: 18px;
-  font-weight: 300;
-  cursor: pointer;
-  animation: 0.15s linear 2;
-  animation-name: ${props => (props.selected ? blink : 'none' )};
-  :hover {
-    background: rgba(255,221,31,0.1);
-  }
-  :after {
-    display:inline-block;
-    color: ${props => (props.selected ? 'inherit' : 'transparent')};
-    content: '✔';
-    position: absolute;
-    right: 10px;
-  }
-`
-
+import styled from 'styled-components'
+import ReactPlayer from 'react-player'
+import fullScreen from '../../assets/controls/fullscreen.svg'
+import noFullScreen from '../../assets/controls/no-fullscreen.svg'
+import infoButton from '../../assets/controls/i.svg'
+import {media} from '../../media'
 export const Container = styled.div`
   position: relative;
-  z-index: 3;
+  z-index: 6;
   width: 100vw;
   height: 100vh;
 `
 
 export const VideoContainer = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: -100;
+  width: 100vw;
+  height: 57vw;
+  position: relative;
+  ${media.desktop`
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease-in;
+    left: 50%;
+    width: ${props => (props.fullScreen ? '100vw' : 'calc(100vw - 300px)')};
+    height: ${props => (props.fullScreen ? '100vh' : '40vw')};
+  `}
 `
-export const Video = styled(Youtube)`
+
+export const VideoBlindLayer = styled.div`
+  z-index:7;
+  cursor: pointer;
+  width: 100vw;
+  height: 40vw;
+  ${media.desktop`
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: ${props => (props.fullScreen ? '100vw' : 'calc(100vw - 300px)')};
+    height: ${props => (props.fullScreen ? '100vh' : '40vw')};
+  `}
+  opacity: 0;
+  transition: all 0.2s ease-in;
+`
+
+
+export const Video = styled(ReactPlayer)`
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -105,3 +61,150 @@ export const Video = styled(Youtube)`
     left: -100% !important;
   }*/
 `
+
+export const Controls = styled.div`
+  transition: all 0.2s ease-in;
+  width: 100%;
+    height: 30px;
+    
+    margin: 4px auto 0;
+    width: 90%;
+    position: relative;
+
+    border-bottom: 1px solid white;
+    
+    
+    height: 40px;
+  ${media.landscape`
+    width: 90%;
+    position: fixed;
+    margin: 0 5%;
+    bottom: 10px;
+    border: none;
+    
+    opacity: ${props => (props.visible ? 1 : 0)};
+  `}
+    ${media.desktop`
+    bottom: 20px;
+  `}
+  
+ 
+`
+
+export const FullscreenButton = styled.div`
+  right: 0;
+  top: 7px;
+  cursor: pointer;
+  background: ${props => (props.active ? `url(${noFullScreen})` : `url(${fullScreen})` )} center no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+`
+
+export const Subtitle = styled.h2`
+  
+    opacity: ${props => (props.visible ? 1 : 0)};
+    
+`;
+
+export const Title = styled.div`
+  width:100%;
+  text-align: center;    
+  padding: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.2s ease-in;
+  height: 60px;
+  z-index: 100;
+  
+  h2 {
+    font: inherit;
+    margin: 0;
+   }
+  ${media.landscape`
+    position: fixed;
+    opacity: ${props => (props.visible ? 1 : 0)};
+    h2 {
+       display: none;  
+     }
+  `}
+  ${media.desktop`
+     top: 30px;
+     position: fixed;
+     opacity: ${props => (props.visible ? 1 : 0)};
+     
+  `}
+`
+
+export const SubtitlesButton = styled.div`
+  position: absolute;
+  left: 150px;
+  background: ${props => (props.active ? `url(${infoButton})` : `url(${infoButton})` )} center no-repeat;
+  background-size: contain;
+  width: 13px;
+  cursor: pointer;
+  height: 13px;
+`
+
+export const InfoButton = styled.div`
+  position: absolute;
+  background: url('${infoButton}') center no-repeat;
+  left: 210px;
+  background-size: contain;
+  width: 15px;
+  cursor: pointer;
+  height: 15px;    
+  
+  left: 150px;
+    top: 9px;
+  display: none; 
+   
+  @media screen and (orientation:landscape) {
+    display: block;
+  }
+  ${media.desktop`
+  display: block;
+  `}
+`
+
+export const Brand = styled.div`
+  position: fixed;
+  bottom: 20px;
+  
+  white-space: nowrap;
+  ${media.desktop`
+    bottom: 33px;
+  `}
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 100;
+  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
+  a {
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+  } 
+`
+export const Div = styled.div`
+  
+    /* position: ${props => (props.centered ? 'fixed' : 'inherit')};
+     top: ${props => (props.centered ? '45%' : 'inherit')};
+     left: ${props => (props.centered ? '50%' : 'inherit')};
+     transform: ${props => (props.centered ? 'translate(-50%, -50%)' : 'inherit')};
+*/
+  margin-top:${props => (props.centered ? '17vh' : 'inherit')};
+  
+  ${media.landscape`
+    margin-top: 0;
+  `}
+`
+

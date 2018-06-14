@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Email</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="Home-02" transform="translate(-927.000000, -309.000000)" class="circle">
+            <g id="Group" transform="translate(927.000000, 197.000000)">
+                <g id="Email" transform="translate(0.000000, 112.000000)">
+                    <circle id="Oval" stroke="#FFFFFF" cx="11" cy="11" r="10"></circle>
+                    <g id="Page-1" fill-rule="evenodd" transform="translate(5.000000, 7.000000)" fill="#FFFFFF">
+                        <path d="M1.4482,6.9129 L1.4482,2.0279 L5.0832,5.2819 C5.3442,5.5159 5.6722,5.6329 6.0002,5.6329 C6.3282,5.6329 6.6552,5.5159 6.9172,5.2819 L10.5512,2.0279 L10.5512,6.9129 L1.4482,6.9129 Z M9.9452,1.5639 L6.4172,4.7239 C6.1782,4.9349 5.8212,4.9349 5.5832,4.7239 L2.0532,1.5639 L9.9452,1.5639 Z M10.9262,0.8139 L1.0732,0.8139 C0.8662,0.8139 0.6982,0.9819 0.6982,1.1889 L0.6982,7.2879 C0.6982,7.4949 0.8662,7.6629 1.0732,7.6629 L10.9262,7.6629 C11.1332,7.6629 11.3012,7.4949 11.3012,7.2879 L11.3012,1.1889 C11.3012,0.9819 11.1332,0.8139 10.9262,0.8139 L10.9262,0.8139 Z" id="Fill-3"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
