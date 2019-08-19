@@ -1,0 +1,147 @@
+[
+  {
+    "time": {
+      "start": 73,
+      "end": 77
+    },
+    "answers": [
+      {
+        "jumpTo": 168,
+        "next": 2
+      },
+      {
+        "jumpTo": 78,
+        "next": 1
+      }
+    ]
+  },
+  {
+    "time": {
+      "start": 164,
+      "end": 167
+    },
+    "answers": [
+      {
+        "jumpTo": 168,
+        "next": 2
+      },
+      {
+        "jumpTo": 78,
+        "next": 1
+      }
+    ]
+  },
+  {
+    "time": {
+      "start": 226,
+      "end": 228
+    },
+    "answers": [
+      {
+        "jumpTo": 230,
+        "next": 3
+      },
+      {
+        "jumpTo": 321,
+        "next": 4
+      }
+    ]
+  },
+  {
+    "time": {
+      "start": 312,
+      "end": 314
+    },
+    "answers": [
+      {
+        "jumpTo": 384,
+        "next": 5
+      },
+      {
+        "jumpTo": 465,
+        "next": 6
+      }
+    ]
+  },
+  {
+    "time": {
+      "start": 377,
+      "end": 379
+    },
+    "answers": [
+      {
+        "jumpTo": 384,
+        "next": 5
+      },
+      {
+        "jumpTo": 465,
+        "next": 6
+      }
+    ]
+  },
+  {
+    "time": {
+      "start": 458,
+      "end": 460
+    },
+    "answers": [
+      {
+        "jumpTo": 384,
+        "next": 5
+      },
+      {
+        "jumpTo": 465,
+        "next": 6
+      }
+    ]
+  },
+  {
+    "time": {
+      "start": 513,
+      "end": 517
+    },
+    "answers": [
+      {
+        "jumpTo": 519,
+        "next": 7
+      },
+      {
+        "jumpTo": 626,
+        "next": 8
+      }
+    ]
+  },
+  {
+    "time": {
+      "start": 619,
+      "end": 623
+    },
+    "answers": [
+      {
+        "jumpTo": 168,
+        "next": 2
+      },
+      {
+        "jumpTo": 78,
+        "next": 1
+      }
+    ]
+  },
+  {
+    "time": {
+      "start": 695,
+      "end": 700
+    },
+    "answers": [
+      {
+        "jumpTo": 168,
+        "next": 2
+      },
+      {
+        "jumpTo": 78,
+        "next": 1
+      }
+    ]
+  }
+]
+

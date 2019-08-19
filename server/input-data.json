@@ -1,0 +1,119 @@
+[
+  {
+    "title": "What do you do?#L:73,77",
+    "properties": {
+      "choices": [
+        {
+          "label": "Let him in to jump over balcony.#N:2,168"
+        },
+        {
+          "label": "Don't let him in. Tell him you'll jump over balcony and let him in.#N:1,78"
+        }
+      ]
+    }
+  },
+  {
+    "title": "What do you do?#L:164,168",
+    "properties": {
+      "choices": [
+        {
+          "label": "Let him in to jump over balcony.#N:2,168"
+        },
+        {
+          "label": "Don't let him in. Tell him you'll jump over balcony and let him in.#N:1,78"
+        }
+      ]
+    }
+  },
+  {
+    "title": "You see the note. What do you do?#L:226,228",
+    "properties": {
+      "choices": [
+        {
+          "label": "Go back to your home.#N:3,230"
+        },
+        {
+          "label": "Open the door to let him in.#N:4,321"
+        }
+      ]
+    }
+  },
+  {
+    "title": "4What do you do?#L:312,314",
+    "properties": {
+      "choices": [
+        {
+          "label": "Let him in to jump over balcony.#N:5,384"
+        },
+        {
+          "label": "Don't let him in. Tell him you'll jump over balcony and let him in.#N:6,465"
+        }
+      ]
+    }
+  },
+  {
+    "title": "5What do you do?#L:377,379",
+    "properties": {
+      "choices": [
+        {
+          "label": "Let him in to jump over balcony.#N:5,384"
+        },
+        {
+          "label": "Don't let him in. Tell him you'll jump over balcony and let him in.#N:6,465"
+        }
+      ]
+    }
+  },
+  {
+    "title": "6What do you do?#L:458,460",
+    "properties": {
+      "choices": [
+        {
+          "label": "Let him in to jump over balcony.#N:5,384"
+        },
+        {
+          "label": "Don't let him in. Tell him you'll jump over balcony and let him in.#N:6,465"
+        }
+      ]
+    }
+  },
+  {
+    "title": "7What do you do?#L:513,516",
+    "properties": {
+      "choices": [
+        {
+          "label": "Let him in to jump over balcony.#N:7,519"
+        },
+        {
+          "label": "Don't let him in. Tell him you'll jump over balcony and let him in.#N:8,626"
+        }
+      ]
+    }
+  },
+  {
+    "title": "8What do you do?#L:619,623",
+    "properties": {
+      "choices": [
+        {
+          "label": "Let him in to jump over balcony.#N:2,168"
+        },
+        {
+          "label": "Don't let him in. Tell him you'll jump over balcony and let him in.#N:1,78"
+        }
+      ]
+    }
+  },
+  {
+    "title": "9What do you do?#L:695,700",
+    "properties": {
+      "choices": [
+        {
+          "label": "Let him in to jump over balcony.#N:2,168"
+        },
+        {
+          "label": "Don't let him in. Tell him you'll jump over balcony and let him in.#N:1,78"
+        }
+      ]
+    }
+  }
+]

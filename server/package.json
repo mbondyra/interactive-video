@@ -1,0 +1,21 @@
+{
+  "name": "cloudflare-server",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.257.1",
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "express-reload": "^1.1.0",
+    "lodash.get": "^4.4.2",
+    "lodash.keyby": "^4.6.0",
+    "lodash.mapvalues": "^4.6.0",
+    "reload": "^2.2.2",
+    "request": "^2.81.0",
+    "serve-static": "^1.13.2"
+  },
+  "scripts": {
+    "start": "node main.js"
+  }
+}

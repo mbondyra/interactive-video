@@ -1,0 +1,173 @@
+[
+  {
+    "title": "What do you do?",
+    "time": {
+      "start": 73,
+      "end": 77
+    },
+    "answers": [
+      {
+        "label": "Don't let him in. Tell him you'll jump over balcony and let him in.",
+        "jumpTo": 168,
+        "next": 2
+      },
+      {
+        "label": "Let him in to jump over balcony.",
+        "jumpTo": 78,
+        "next": 1
+      }
+    ]
+  },
+  {
+    "title": "What do you do?",
+    "time": {
+      "start": 164,
+      "end": 167
+    },
+    "answers": [
+      {
+        "label": "Let him in to jump over balcony.",
+        "jumpTo": 168,
+        "next": 2
+      },
+      {
+        "label": "Don't let him in. Tell him you'll jump over balcony and let him in.",
+        "jumpTo": 78,
+        "next": 1
+      }
+    ]
+  },
+  {
+    "title": "You see the note. What do you do?",
+    "time": {
+      "start": 226,
+      "end": 228
+    },
+    "answers": [
+      {
+        "label": "Go back to your home.",
+        "jumpTo": 230,
+        "next": 3
+      },
+      {
+        "label": "Open the door to let him in.",
+        "jumpTo": 321,
+        "next": 4
+      }
+    ]
+  },
+  {
+    "title": "4What do you do?",
+    "time": {
+      "start": 312,
+      "end": 314
+    },
+    "answers": [
+      {
+        "label": "Let him in to jump over balcony.",
+        "jumpTo": 384,
+        "next": 5
+      },
+      {
+        "label": "Don't let him in. Tell him you'll jump over balcony and let him in.",
+        "jumpTo": 465,
+        "next": 6
+      }
+    ]
+  },
+  {
+    "title": "5What do you do?",
+    "time": {
+      "start": 377,
+      "end": 379
+    },
+    "answers": [
+      {
+        "label": "Let him in to jump over balcony.",
+        "jumpTo": 384,
+        "next": 5
+      },
+      {
+        "label": "Don't let him in. Tell him you'll jump over balcony and let him in.",
+        "jumpTo": 465,
+        "next": 6
+      }
+    ]
+  },
+  {
+    "title": "6What do you do?",
+    "time": {
+      "start": 458,
+      "end": 460
+    },
+    "answers": [
+      {
+        "label": "Let him in to jump over balcony.",
+        "jumpTo": 384,
+        "next": 5
+      },
+      {
+        "label": "Don't let him in. Tell him you'll jump over balcony and let him in.",
+        "jumpTo": 465,
+        "next": 6
+      }
+    ]
+  },
+  {
+    "title": "7What do you do?",
+    "time": {
+      "start": 513,
+      "end": 517
+    },
+    "answers": [
+      {
+        "label": "Let him in to jump over balcony.",
+        "jumpTo": 519,
+        "next": 7
+      },
+      {
+        "label": "Don't let him in. Tell him you'll jump over balcony and let him in.",
+        "jumpTo": 626,
+        "next": 8
+      }
+    ]
+  },
+  {
+    "title": "8What do you do?",
+    "time": {
+      "start": 619,
+      "end": 623
+    },
+    "answers": [
+      {
+        "label": "Let him in to jump over balcony.",
+        "jumpTo": 168,
+        "next": 2
+      },
+      {
+        "label": "Don't let him in. Tell him you'll jump over balcony and let him in.",
+        "jumpTo": 78,
+        "next": 1
+      }
+    ]
+  },
+  {
+    "title": "9What do you do?",
+    "time": {
+      "start": 695,
+      "end": 700
+    },
+    "answers": [
+      {
+        "label": "Let him in to jump over balcony.",
+        "jumpTo": 168,
+        "next": 2
+      },
+      {
+        "label": "Don't let him in. Tell him you'll jump over balcony and let him in.",
+        "jumpTo": 78,
+        "next": 1
+      }
+    ]
+  }
+]

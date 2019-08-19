@@ -4049,6 +4049,10 @@ lodash.uniq@^4.5.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
+lodash@^2.4.1:
+  version "2.4.2"
+  resolved "http://registry.npmjs.org/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
+
 loglevel@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.4.1.tgz#95b383f91a3c2756fd4ab093667e4309161f2bcd"
@@ -6254,6 +6258,12 @@ time-stamp@^2.0.0:
 timed-out@^3.0.0:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/timed-out/-/timed-out-3.1.3.tgz#95860bfcc5c76c277f8f8326fd0f5b2e20eba217"
+
+timer-stopwatch@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/timer-stopwatch/-/timer-stopwatch-0.2.0.tgz#d2847cf7496e29d2c87db81283ddb9813ffad147"
+  dependencies:
+    lodash "^2.4.1"
 
 timers-browserify@^2.0.2:
   version "2.0.4"

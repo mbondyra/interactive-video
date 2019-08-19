@@ -3,21 +3,29 @@ import {media} from '../../media'
 
 export const Description = styled.div`
 	transition: 0.2s all ease-in;
-  font-weight: 100;
-  font-size: 13px;
-  color: white;
   z-index: 3;
-  overflow: scroll;
-  max-height: calc( 100vh - 200px - 57vw );
   margin: 0 5%;
   padding: 15px 0;
   box-sizing: border-box;
   color: white;
-  opacity: ${props => (props.mobileVisible ? '1' : '0')};
-  
+  display: ${props => (props.fullScreen ? 'none' : 'block')};
+  font-family: ApercuLight;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: lighter;
+  letter-spacing: -0.25px;
+
+  // put a lot of empty space for scrolling
+  // this makes it easy to hide the adress bar on mobile devices
   ${media.landscape`
-  max-height:80vh;
-    width: 70vw;
+    display: ${props => (props.fullScreen ? 'block' : 'block')};
+    height: ${props => (props.fullScreen ? '1000px' : 'auto')};
+  `}
+
+  ${media.desktop`
+    width: 350px;
+    height: 280px;
+    overflow: auto;
 	  opacity: ${props => (props.visible ? '1' : '0')};
 	  pointer-events: ${props => (props.visible ? 'inherit' : 'none')};
     position: fixed;
@@ -26,52 +34,43 @@ export const Description = styled.div`
     transform: translateY(-50%);
   `}
   
-  ${media.desktop`
-    width: 245px;
-  `}
-  
   h1 {
-    display: none;
-    font-weight: 600;
     margin: 0;
-    font-size: 13px;
-    line-height: 19px;
     margin-bottom: 20px;
-    ${media.landscape`
-      display: block;
+    font-family: ApercuLight;
+    font-size: 24px;
+    line-height: 34px;
+    letter-spacing: -0.35px;
+    font-weight: lighter;
+
+    ${media.desktop`
+      font-size: 32px;
+      line-height: 44px;
+      letter-spacing: -0.5px;
+      font-weight: lighter;
     `}
-  }
-  a {    
-    display: block;
-    margin-top: 30px;
-    font-weight: 500;
-    font-size: 11px;
-    text-decoration: none;
-    cursor: pointer;
-    letter-spacing: 1px;
-    display: none;
-    ${media.landscape`
-      display: block;
-    `}
-    
   }
 `
 
-export const Truncate = styled.div`
-	transition: max-height 0.3s ease-in;
-  overflow:hidden;
-  
-  ${media.landscape`
-	    max-height: ${props => (props.expanded ? '400px' : '54px')};
+export const TextWrapper = styled.div`
+  color: #d3d3d3;
+
+  ${media.desktop`
+    width: 250px;
   `}
 
-   a { 
-    font-weight: 500;
+  a {
     font-size: 13px;
+    // line-height: 20px;
+    vertical-align: middle;
+    letter-spacing: 0px;
     border: 1px solid;
-    display: inline-block;
-    padding: 6px 20px;
+    border-radius: 3px;
+    padding: 6px 0px;
+    padding-top: 8px;
     margin-top: 28px;
+    cursor: pointer;
+    text-decoration: none;
     transition: .15s ease-in;
     transition-property: color, background-color;
     display: block;
@@ -80,6 +79,9 @@ export const Truncate = styled.div`
       color: #262627;
       background: white;
     }
+
+    ${media.desktop`
+      width: 170px;
+    `}
   }
 `
-

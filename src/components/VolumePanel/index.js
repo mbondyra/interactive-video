@@ -26,10 +26,10 @@ export const VolumeSymbol = styled(SVG)`
   display: inline-block;
 `
 
-export default ({value, onChange, onClick}) => (
-  <Volume >
+export default ({isMobile, value, onChange, onClick}) => (
+  <Volume isMobile={isMobile}>
     <Div onClick={onClick}>
-    <VolumeSymbol src={volume} value={value}/>
+      <VolumeSymbol src={volume} value={value}/>
     </Div>
     <VolumeRange>
       <InputRange maxValue={1} minValue={0} step={0.05} value={value} onChange={onChange}/>

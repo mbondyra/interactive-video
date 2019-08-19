@@ -6,14 +6,13 @@ export const Volume = styled.div`
   margin-top: -7px;
   left: 115px;
   margin-top: 0;
-    left: 50px;
-    top: 2px;
-    
-    
+  left: 50px;
+  top: 2px;
   opacity: 0.7;
   :hover {
     opacity: 1;
   }
+  display: ${props => (props.isMobile ? 'none' : 'block')};
 `
 
 export const VolumeRange = styled.div`
