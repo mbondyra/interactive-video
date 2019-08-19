@@ -2,7 +2,6 @@
   "name": "interactive-video",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://labs.typeform.com/interactive-video/",
   "dependencies": {
     "@typeform/embed": "^0.5.6",
     "@vimeo/player": "^2.2.0",
