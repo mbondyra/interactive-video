@@ -25,7 +25,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "react-player": "^0.25.3",
     "styled-components": "^2.2.3"
   }
