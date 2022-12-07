@@ -4051,7 +4051,7 @@ lodash.uniq@^4.5.0:
 
 lodash@^2.4.1:
   version "2.4.2"
-  resolved "http://registry.npmjs.org/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
 
 loglevel@^1.4.1:
   version "1.4.1"
